@@ -4,6 +4,46 @@ var router = express.Router();
 const ApiService = require('../service/sqlService.js');
 
 
+//
+router.get('/getMethod/:page', async function(req, res, next){
+ 
+  let pageIndex = req.params.page  //지금 몇번째 페이지인지 알수 있다
+
+  // 디비에서 사용자 정보를 가져온다 - 페이징
+  let totalUserCount = await ApiService.getUserCount();
+
+  let countPerPage = 3; // 몇개를 보여줄거냐? limit 부분
+  let totalPageCount = Math.ceil(totalUserCount/countPerPage);
+
+  let offset = 0;
+
+  if  (pageIndex <=0){
+    pageIndex = 1;
+  } //언더 플로우 예외처리
+
+  if(pageIndex > totalPageCount){
+    pageIndex = totalPageCount;
+  }  //오버플로우 예외처리
+
+  if(pageIndex > 1){
+    offset = (pageIndex - 1) * countPerPage;
+  }
+
+
+
+// 디비에서 해당 페이지의 데이터를 가져온다.
+  let fetchedUsersPerPage = await ApiService.getUsersPerPage(offset, countPerPage);
+
+  res.send({
+    pageIndex : pageIndex,
+    countPerPage : countPerPage,
+    totalPageCount : totalPageCount,
+    totalUserCount : totalUserCount,
+    fetchedUsersPerPage : fetchedUsersPerPage
+  });
+});
+
+
 
 
 /* GET home page. */
