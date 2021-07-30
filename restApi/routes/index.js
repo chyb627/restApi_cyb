@@ -5,7 +5,7 @@ const ApiService = require('../service/sqlService.js');
 
 
 //
-router.get('/getMethod/:page', async function(req, res, next){
+router.get('/user/:page', async function(req, res, next){
  
   let pageIndex = req.params.page  //지금 몇번째 페이지인지 알수 있다
 
@@ -47,7 +47,7 @@ router.get('/getMethod/:page', async function(req, res, next){
 
 
 /* GET home page. */
-router.get('/getMethod', async function(req, res, next) {
+router.get('/user', async function(req, res, next) {
   //뷰를 보여준다
   //res.render('index', { title: 'Express' });
 
@@ -65,7 +65,7 @@ router.get('/getMethod', async function(req, res, next) {
 
 
 
-router.post('/postMethod', async function (req, res) {
+router.post('/user', async function (req, res) {
 
   let firstName = req.body.firstName;
   let lastName = req.body.lastName;
@@ -82,7 +82,7 @@ router.post('/postMethod', async function (req, res) {
 
 
 
-router.put('/putMethod/:id', async function (req, res) {
+router.put('/user/:id', async function (req, res) {
 
   let id = req.params.id;
   let firstName = req.body.firstName;
@@ -100,7 +100,7 @@ router.put('/putMethod/:id', async function (req, res) {
 
 
 
-router.delete('/deleteMethod/:id', async function (req, res) {
+router.delete('/user/:id', async function (req, res) {
 
   let id = req.params.id;
   console.log("id: " + id);
