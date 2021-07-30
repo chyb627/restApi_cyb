@@ -55,7 +55,8 @@ async function updateUser(id, firstName, lastName, email, password){
 
 
 
-module.exports.getUsers = getUsers;
+//밖에서 사용하기위해 exports를 해준다
+module.exports.getUsers = getUsers; 
 module.exports.addUser = addUser;
 module.exports.deleteUser = deleteUser;
 module.exports.updateUser = updateUser;

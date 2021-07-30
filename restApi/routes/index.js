@@ -3,6 +3,9 @@ var router = express.Router();
 
 const ApiService = require('../service/sqlService.js');
 
+
+
+
 /* GET home page. */
 router.get('/getMethod', async function(req, res, next) {
   //뷰를 보여준다
@@ -16,6 +19,11 @@ router.get('/getMethod', async function(req, res, next) {
     fetchedUsers: fetchedUsers
   });
 });
+
+
+
+
+
 
 router.post('/postMethod', async function (req, res) {
 
